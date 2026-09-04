@@ -1,6 +1,6 @@
 /* Farmer-Friendly 100% Fluid Full-Screen Design System */
 :root {
-    /* Light Theme (Fresh Natural Agriculture Aesthetic) */
+    /* Light Theme */
     --bg-page: #f4f7fa;
     --bg-surface: #ffffff;
     --border-color: #e2e8f0;
@@ -104,49 +104,71 @@ body {
     gap: 16px;
 }
 
-/* Header */
+/* Main Header with Lush Agricultural Landscape Gradient Backdrop */
 .main-header {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-color);
+    background: 
+        radial-gradient(ellipse at 80% 10%, rgba(34, 197, 94, 0.25) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(20, 83, 45, 0.92) 0%, rgba(6, 78, 59, 0.95) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.3);
     border-radius: var(--radius-lg);
-    padding: 14px 24px;
+    padding: 20px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 12px 30px -6px rgba(6, 78, 59, 0.35);
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle decorative farm field sun rays */
+.main-header::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    width: 220px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .header-brand {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
+    z-index: 1;
 }
 
 .brand-icon {
-    font-size: 30px;
-    background: var(--primary-green-light);
-    width: 52px;
-    height: 52px;
+    font-size: 34px;
+    background: linear-gradient(135deg, #fef08a 0%, #ca8a04 100%);
+    color: #14532d;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-md);
     flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .brand-title {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 800;
-    color: var(--text-main);
+    color: #ffffff;
     letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .brand-sub {
     font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 500;
+    color: #bbf7d0;
+    font-weight: 600;
+    margin-top: 2px;
 }
 
 .header-actions {
@@ -154,13 +176,14 @@ body {
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
+    z-index: 1;
 }
 
 /* Language Switcher Pill */
 .lang-switch-box {
     display: flex;
-    background: var(--bg-page);
-    border: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-md);
     padding: 3px;
     gap: 2px;
@@ -169,26 +192,26 @@ body {
 .lang-btn {
     background: transparent;
     border: none;
-    padding: 6px 14px;
+    padding: 7px 14px;
     border-radius: var(--radius-sm);
     font-size: 13px;
-    font-weight: 700;
-    color: var(--text-muted);
+    font-weight: 800;
+    color: #cbd5e1;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .lang-btn.active {
-    background: var(--primary-green);
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(21, 128, 61, 0.25);
+    background: #ffffff;
+    color: #14532d;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .action-btn {
-    background: var(--bg-page);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 9px 16px;
     border-radius: var(--radius-md);
     font-size: 13px;
     font-weight: 700;
@@ -196,10 +219,11 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+    backdrop-filter: blur(8px);
 }
 
 .action-btn:hover {
-    background: var(--border-color);
+    background: rgba(255, 255, 255, 0.25);
     transform: translateY(-1px);
 }
 
@@ -207,8 +231,9 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--primary-green-light);
-    color: var(--primary-green-dark);
+    background: rgba(34, 197, 94, 0.25);
+    border: 1px solid rgba(134, 239, 172, 0.4);
+    color: #86efac;
     padding: 8px 16px;
     border-radius: 999px;
     font-size: 13px;
@@ -218,16 +243,16 @@ body {
 .dot-pulse {
     width: 10px;
     height: 10px;
-    background: var(--primary-green);
+    background: #4ade80;
     border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
     animation: pulse-ring 2s infinite;
 }
 
 @keyframes pulse-ring {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
 }
 
 /* Crop Panel */
@@ -604,13 +629,4 @@ body {
     width: 100%;
     height: 280px;
     margin-top: 10px;
-}
-
-/* Footer */
-.app-footer {
-    text-align: center;
-    color: var(--text-light);
-    font-size: 12px;
-    font-weight: 500;
-    padding: 8px 0 16px;
 }
