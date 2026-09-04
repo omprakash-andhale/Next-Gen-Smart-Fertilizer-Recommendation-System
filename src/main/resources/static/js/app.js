@@ -1,11 +1,11 @@
 let currentCrop = 'Tomato';
-let currentLang = 'hi'; // Default to Hindi
+let currentLang = 'en'; // Default to English with original project title
 let telemetryChart = null;
 
 const translations = {
     hi: {
-        brandTitle: "स्मार्ट खाद सलाहकार प्रणाली",
-        brandSub: "किसानों के लिए वास्तविक समय में मिट्टी परीक्षण और सटीक खाद की सिफारिश",
+        brandTitle: "Next Gen-Smart Fertilizer Recommendation System",
+        brandSub: "IoT सेंसर (Raspberry Pi Pico 2 W) • रीयल-टाइम मिट्टी विश्लेषण एवं स्मार्ट खाद सिफारिश",
         picoStatus: "Pico 2 W कनेक्टेड",
         refreshBtn: "🔄 रीफ्रेश",
         darkTheme: "डार्क मोड",
@@ -41,15 +41,15 @@ const translations = {
         preBal: "✅ संतुलित मिट्टी",
         chartHeading: "📊 समय के साथ मिट्टी के पोषक तत्वों का ग्राफ",
         chartSub: "रियल-टाइम सेंसर डेटा",
-        footer: "Next Gen-Smart Fertilizer Recommendation System • भारतीय कृषि और सटीक खेती के लिए समर्पित",
+        footer: "Next Gen-Smart Fertilizer Recommendation System • A.Y. 2025-26 • Published at ICRATM-2026",
         cropPrefix: "फसल: ",
         statusOptimal: "✅ उत्तम (पर्याप्त)",
         statusLow: "⚠️ कम (खाद की आवश्यकता)",
         statusHigh: "⚠️ अधिक (अधिकतम)"
     },
     en: {
-        brandTitle: "Smart Fertilizer Advisory System",
-        brandSub: "Real-Time Soil Health Analysis & Precision Recommendations for Farmers",
+        brandTitle: "Next Gen-Smart Fertilizer Recommendation System",
+        brandSub: "IoT Edge Monitoring (Raspberry Pi Pico 2 W) • Cloud-Scale Precision Agriculture",
         picoStatus: "Pico 2 W Connected",
         refreshBtn: "🔄 Refresh",
         darkTheme: "Dark Mode",
@@ -85,7 +85,7 @@ const translations = {
         preBal: "✅ Balanced Soil",
         chartHeading: "📊 Soil Nutrient Trend Over Time",
         chartSub: "Real-Time Field Telemetry",
-        footer: "Next Gen-Smart Fertilizer Recommendation System • Dedicated to Smart Precision Farming",
+        footer: "Next Gen-Smart Fertilizer Recommendation System • A.Y. 2025-26 • Published at ICRATM-2026",
         cropPrefix: "Crop: ",
         statusOptimal: "✅ Healthy (Optimal)",
         statusLow: "⚠️ Low (Needs Fertilizer)",
@@ -459,7 +459,7 @@ function loadPreset(type) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('app-lang') || 'hi';
+    const savedLang = localStorage.getItem('app-lang') || 'en';
     initTheme();
     initChart();
     setLanguage(savedLang);
