@@ -8,12 +8,11 @@
 ## 👨‍💻 Project Authors & Academic Credentials
 
 - **Pratik Sadar** (Exam Seat No: `B401030056` | Email: `pratiksadar9@gmail.com`)
-- **Priyanka Jawale** (Exam Seat No: `B401030051` | Email: `priyankajawale847@gmail.com`)
 - **Omprakash Andhale** (Exam Seat No: `B401030045` | Email: `omprakashandhale8@gmail.com`)
 
 **Project Guide:** Prof. Kalpita Mane (`kalpitamane1989@gmail.com`)  
 **Department:** Department of Electronics and Telecommunication Engineering  
-**Institution:** Dr. D.Y. Patil School of Engineering & Technology, Savitribai Phule Pune University (A.Y. 2025–26)
+**Institution:** Dr. D.Y. Patil School of Engineering & Technology, Savitribai Phule Pune University 
 
 ---
 
@@ -83,7 +82,4 @@ python3 iot-simulator/pico_sensor_client.py
 
 ---
 
-## 📄 Research & Conference Publications
-- **Paper Title**: *Next Gen-Smart Fertilizer Recommendation System*
-- **Conference**: 2nd International Conference on Recent Advances in Technology & Management (ICRATM-2026), 29th–30th April 2026
-- **Project Competition**: National Level Project Competition (NLPC-26), IETE Pune Centre
+
