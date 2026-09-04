@@ -41,7 +41,6 @@ const translations = {
         preBal: "✅ संतुलित मिट्टी",
         chartHeading: "📊 समय के साथ मिट्टी के पोषक तत्वों का ग्राफ",
         chartSub: "रियल-टाइम सेंसर डेटा",
-        footer: "Next Gen-Smart Fertilizer Recommendation System • A.Y. 2025-26 • Published at ICRATM-2026",
         cropPrefix: "फसल: ",
         statusOptimal: "✅ उत्तम (पर्याप्त)",
         statusLow: "⚠️ कम (खाद की आवश्यकता)",
@@ -85,7 +84,6 @@ const translations = {
         preBal: "✅ Balanced Soil",
         chartHeading: "📊 Soil Nutrient Trend Over Time",
         chartSub: "Real-Time Field Telemetry",
-        footer: "Next Gen-Smart Fertilizer Recommendation System • A.Y. 2025-26 • Published at ICRATM-2026",
         cropPrefix: "Crop: ",
         statusOptimal: "✅ Healthy (Optimal)",
         statusLow: "⚠️ Low (Needs Fertilizer)",
@@ -138,7 +136,6 @@ function setLanguage(lang) {
     if (document.getElementById('t-pre-bal')) document.getElementById('t-pre-bal').textContent = t.preBal;
     if (document.getElementById('t-chart-heading')) document.getElementById('t-chart-heading').textContent = t.chartHeading;
     if (document.getElementById('t-chart-sub')) document.getElementById('t-chart-sub').textContent = t.chartSub;
-    if (document.getElementById('t-footer')) document.getElementById('t-footer').textContent = t.footer;
 
     const theme = document.documentElement.getAttribute('data-theme') || 'light';
     updateThemeButtonUI(theme);
