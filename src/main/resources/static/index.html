@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fertilizer Advisory System - स्मार्ट खाद सलाहकार प्रणाली</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Main Top Bar -->
+        <header class="main-header">
+            <div class="header-brand">
+                <div class="brand-icon">🌱</div>
+                <div>
+                    <h1 class="brand-title" id="t-brand-title">स्मार्ट खाद सलाहकार प्रणाली</h1>
+                    <p class="brand-sub" id="t-brand-sub">किसानों के लिए वास्तविक समय में मिट्टी परीक्षण और सटीक खाद की सिफारिश</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <!-- Language Switcher: Hindi / English -->
+                <div class="lang-switch-box">
+                    <button class="lang-btn active" id="btnLangHi" onclick="setLanguage('hi')">🇮🇳 हिन्दी</button>
+                    <button class="lang-btn" id="btnLangEn" onclick="setLanguage('en')">🇬🇧 English</button>
+                </div>
+
+                <div class="live-indicator">
+                    <span class="dot-pulse"></span>
+                    <span id="t-pico-status">Pico 2 W कनेक्टेड</span>
+                </div>
+
+                <button class="action-btn" id="themeToggleBtn" onclick="toggleTheme()">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeLabel">डार्क मोड</span>
+                </button>
+                <button class="action-btn" onclick="fetchLiveTelemetry()">
+                    <span id="t-refresh-btn">🔄 रीफ्रेश</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Crop Selector with Visual Crop Cards -->
+        <section class="crop-panel">
+            <div class="crop-panel-title" id="t-step1-title">कदम 1: अपनी फसल चुनें</div>
+            <div class="crop-cards-grid">
+                <div class="crop-card active" data-crop="Tomato" onclick="selectCrop('Tomato', this)">
+                    <span class="crop-card-icon">🍅</span>
+                    <span class="crop-card-name" id="t-crop-tomato">टमाटर (Tomato)</span>
+                </div>
+                <div class="crop-card" data-crop="Wheat" onclick="selectCrop('Wheat', this)">
+                    <span class="crop-card-icon">🌾</span>
+                    <span class="crop-card-name" id="t-crop-wheat">गेहूं (Wheat)</span>
+                </div>
+                <div class="crop-card" data-crop="Rice" onclick="selectCrop('Rice', this)">
+                    <span class="crop-card-icon">🍚</span>
+                    <span class="crop-card-name" id="t-crop-rice">धान / चावल (Rice)</span>
+                </div>
+                <div class="crop-card" data-crop="Cotton" onclick="selectCrop('Cotton', this)">
+                    <span class="crop-card-icon">🌱</span>
+                    <span class="crop-card-name" id="t-crop-cotton">कपास (Cotton)</span>
+                </div>
+                <div class="crop-card" data-crop="Maize" onclick="selectCrop('Maize', this)">
+                    <span class="crop-card-icon">🌽</span>
+                    <span class="crop-card-name" id="t-crop-maize">मक्का (Maize)</span>
+                </div>
+                <div class="crop-card" data-crop="Sugarcane" onclick="selectCrop('Sugarcane', this)">
+                    <span class="crop-card-icon">🎋</span>
+                    <span class="crop-card-name" id="t-crop-sugarcane">गन्ना (Sugarcane)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Big Easy-to-Read Soil Sensor Gauges -->
+        <section class="sensor-grid">
+            <!-- Nitrogen -->
+            <div class="sensor-box" style="--card-color: #16a34a; --card-bg: var(--color-n-bg);">
+                <div class="sensor-box-top">
+                    <span class="sensor-box-label" id="t-lbl-n">नाइट्रोजन (Nitrogen)</span>
+                    <span class="sensor-box-badge-icon">🌿</span>
+                </div>
+                <div class="sensor-box-value" id="valN">125 <span class="sensor-box-unit">mg/kg</span></div>
+                <span class="sensor-box-status status-good" id="statusN">जांच हो रही है...</span>
+            </div>
+
+            <!-- Phosphorus -->
+            <div class="sensor-box" style="--card-color: #2563eb; --card-bg: var(--color-p-bg);">
+                <div class="sensor-box-top">
+                    <span class="sensor-box-label" id="t-lbl-p">फास्फोरस (Phosphorus)</span>
+                    <span class="sensor-box-badge-icon">⚡</span>
+                </div>
+                <div class="sensor-box-value" id="valP">65 <span class="sensor-box-unit">mg/kg</span></div>
+                <span class="sensor-box-status status-good" id="statusP">जांच हो रही है...</span>
+            </div>
+
+            <!-- Potassium -->
+            <div class="sensor-box" style="--card-color: #7c3aed; --card-bg: var(--color-k-bg);">
+                <div class="sensor-box-top">
+                    <span class="sensor-box-label" id="t-lbl-k">पोटेशियम (Potassium)</span>
+                    <span class="sensor-box-badge-icon">💎</span>
+                </div>
+                <div class="sensor-box-value" id="valK">140 <span class="sensor-box-unit">mg/kg</span></div>
+                <span class="sensor-box-status status-good" id="statusK">जांच हो रही है...</span>
+            </div>
+
+            <!-- pH -->
+            <div class="sensor-box" style="--card-color: #d97706; --card-bg: var(--color-ph-bg);">
+                <div class="sensor-box-top">
+                    <span class="sensor-box-label" id="t-lbl-ph">मिट्टी का pH</span>
+                    <span class="sensor-box-badge-icon">🧪</span>
+                </div>
+                <div class="sensor-box-value" id="valPH">6.8 <span class="sensor-box-unit">pH</span></div>
+                <span class="sensor-box-status status-good" id="statusPH">जांच हो रही है...</span>
+            </div>
+
+            <!-- Temperature -->
+            <div class="sensor-box" style="--card-color: #ea580c; --card-bg: var(--color-temp-bg);">
+                <div class="sensor-box-top">
+                    <span class="sensor-box-label" id="t-lbl-temp">तापमान (Temperature)</span>
+                    <span class="sensor-box-badge-icon">🌡️</span>
+                </div>
+                <div class="sensor-box-value" id="valTemp">29.0 <span class="sensor-box-unit">°C</span></div>
+                <span class="sensor-box-status status-good" id="statusTemp">सामान्य</span>
+            </div>
+
+            <!-- Humidity -->
+            <div class="sensor-box" style="--card-color: #0891b2; --card-bg: var(--color-hum-bg);">
+                <div class="sensor-box-top">
+                    <span class="sensor-box-label" id="t-lbl-hum">नमी / आर्द्रता (Humidity)</span>
+                    <span class="sensor-box-badge-icon">💧</span>
+                </div>
+                <div class="sensor-box-value" id="valHumidity">68 <span class="sensor-box-unit">%</span></div>
+                <span class="sensor-box-status status-good" id="statusHum">उत्तम</span>
+            </div>
+        </section>
+
+        <!-- Main Split: Big Farmer Fertilizer Advice Card & Soil Test Simulator -->
+        <div class="content-grid">
+            <!-- Left: Hero Fertilizer Recommendation -->
+            <div class="hero-card">
+                <div class="section-heading">
+                    <span class="section-title" id="t-hero-heading">🌾 सुझाई गई खाद और कार्य योजना</span>
+                    <span id="activeCropBadge" style="font-size:14px; font-weight:800; color:var(--primary-green);">फसल: टमाटर (Tomato)</span>
+                </div>
+
+                <div class="hero-recommendation-banner">
+                    <span class="hero-tag" id="t-hero-tag">उपयोग करने के लिए सबसे उपयुक्त खाद</span>
+                    <div class="hero-fertilizer-title" id="primaryFertilizerName">यूरिया (Urea 46% N)</div>
+                    <div class="hero-summary" id="recSummaryText">टमाटर की फसल के लिए मिट्टी में नाइट्रोजन की कमी पाई गई है।</div>
+                    <div class="hero-dosage-badge" id="recDosageText">
+                        <span id="t-dosage-prefix">📦 अनुशंसित मात्रा:</span> <span>12 किग्रा/एकड़ विभाजित मात्रा में डालें।</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;" id="t-steps-label">
+                        किसान भाइयों के लिए जरूरी सलाह
+                    </div>
+                    <div class="advice-box" id="adviceListContainer">
+                        <div class="advice-card">
+                            <span class="advice-card-icon">📌</span>
+                            <span>फूल आने से पहले नाइट्रोजन युक्त खाद (यूरिया) का प्रयोग करें।</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Field Soil Test Entry / Simulator -->
+            <div class="simulator-card">
+                <div class="section-heading">
+                    <span class="section-title" id="t-sim-heading">🧪 मिट्टी का मान मैन्युअल रूप से जांचें</span>
+                </div>
+
+                <form id="sensorInputForm" onsubmit="submitSensorReading(event)">
+                    <div class="input-fields-grid">
+                        <div class="input-group">
+                            <label id="t-in-n">नाइट्रोजन (N) mg/kg</label>
+                            <input type="number" id="inputN" value="125" required>
+                        </div>
+                        <div class="input-group">
+                            <label id="t-in-p">फास्फोरस (P) mg/kg</label>
+                            <input type="number" id="inputP" value="65" required>
+                        </div>
+                        <div class="input-group">
+                            <label id="t-in-k">पोटेशियम (K) mg/kg</label>
+                            <input type="number" id="inputK" value="140" required>
+                        </div>
+                        <div class="input-group">
+                            <label id="t-in-ph">मिट्टी का pH स्तर</label>
+                            <input type="number" id="inputPH" value="6.8" step="0.1" required>
+                        </div>
+                        <div class="input-group">
+                            <label id="t-in-temp">तापमान (°C)</label>
+                            <input type="number" id="inputTemp" value="29" step="0.5" required>
+                        </div>
+                        <div class="input-group">
+                            <label id="t-in-hum">नमी (%)</label>
+                            <input type="number" id="inputHumidity" value="68" required>
+                        </div>
+                        <button type="submit" class="btn-submit-reading" id="submitBtn">
+                            <span id="t-calc-btn">🔍 सही खाद की गणना करें</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div style="margin-top: 10px;">
+                    <div style="font-size: 12px; font-weight: 800; color: var(--text-muted); margin-bottom: 8px;" id="t-preset-label">
+                        त्वरित मिट्टी परीक्षण नमूने:
+                    </div>
+                    <div class="preset-buttons">
+                        <button type="button" class="preset-btn" onclick="loadPreset('lowN')" id="t-pre-lowN">🌱 कम नाइट्रोजन (यूरिया)</button>
+                        <button type="button" class="preset-btn" onclick="loadPreset('alkaline')" id="t-pre-alk">🧪 क्षारीय मिट्टी (सल्फर)</button>
+                        <button type="button" class="preset-btn" onclick="loadPreset('balanced')" id="t-pre-bal">✅ संतुलित मिट्टी</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historical Sensor Trends Chart -->
+        <div class="chart-panel">
+            <div class="section-heading">
+                <span class="section-title" id="t-chart-heading">📊 समय के साथ मिट्टी के पोषक तत्वों का ग्राफ</span>
+                <span style="font-size:13px; color:var(--text-light); font-weight:600;" id="t-chart-sub">रियल-टाइम सेंसर डेटा</span>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="soilTelemetryChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer" id="t-footer">
+            Next Gen-Smart Fertilizer Recommendation System • भारतीय कृषि और सटीक खेती के लिए समर्पित
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
