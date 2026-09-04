@@ -7,8 +7,8 @@
 
 ## 👨‍💻 Project Authors & Academic Credentials
 
-- **Pratik Sadar** (Exam Seat No: `B401030056` | Email: `pratiksadar9@gmail.com`)
-- **Omprakash Andhale** (Exam Seat No: `B401030045` | Email: `omprakashandhale8@gmail.com`)
+- **Pratik Sadar**  | Email: `pratiksadar9@gmail.com`)
+- **Omprakash Andhale** | Email: `omprakashandhale8@gmail.com`)
 
 **Project Guide:** Prof. Kalpita Mane (`kalpitamane1989@gmail.com`)  
 **Department:** Department of Electronics and Telecommunication Engineering  
