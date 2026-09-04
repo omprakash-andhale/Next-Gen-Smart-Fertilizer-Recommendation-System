@@ -1,5 +1,5 @@
 let currentCrop = 'Tomato';
-let currentLang = 'en'; // Default to English with original project title
+let currentLang = 'hi'; // Default to Hindi
 let telemetryChart = null;
 
 const translations = {
@@ -97,46 +97,48 @@ function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('app-lang', lang);
 
-    document.getElementById('btnLangHi').classList.toggle('active', lang === 'hi');
-    document.getElementById('btnLangEn').classList.toggle('active', lang === 'en');
+    const btnHi = document.getElementById('btnLangHi');
+    const btnEn = document.getElementById('btnLangEn');
+    if (btnHi) btnHi.classList.toggle('active', lang === 'hi');
+    if (btnEn) btnEn.classList.toggle('active', lang === 'en');
 
     const t = translations[lang];
-    document.getElementById('t-brand-title').textContent = t.brandTitle;
-    document.getElementById('t-brand-sub').textContent = t.brandSub;
-    document.getElementById('t-pico-status').textContent = t.picoStatus;
-    document.getElementById('t-refresh-btn').textContent = t.refreshBtn;
-    document.getElementById('t-step1-title').textContent = t.step1Title;
-    document.getElementById('t-crop-tomato').textContent = t.cropTomato;
-    document.getElementById('t-crop-wheat').textContent = t.cropWheat;
-    document.getElementById('t-crop-rice').textContent = t.cropRice;
-    document.getElementById('t-crop-cotton').textContent = t.cropCotton;
-    document.getElementById('t-crop-maize').textContent = t.cropMaize;
-    document.getElementById('t-crop-sugarcane').textContent = t.cropSugarcane;
-    document.getElementById('t-lbl-n').textContent = t.lblN;
-    document.getElementById('t-lbl-p').textContent = t.lblP;
-    document.getElementById('t-lbl-k').textContent = t.lblK;
-    document.getElementById('t-lbl-ph').textContent = t.lblPh;
-    document.getElementById('t-lbl-temp').textContent = t.lblTemp;
-    document.getElementById('t-lbl-hum').textContent = t.lblHum;
-    document.getElementById('t-hero-heading').textContent = t.heroHeading;
-    document.getElementById('t-hero-tag').textContent = t.heroTag;
-    document.getElementById('t-dosage-prefix').textContent = t.dosagePrefix;
-    document.getElementById('t-steps-label').textContent = t.stepsLabel;
-    document.getElementById('t-sim-heading').textContent = t.simHeading;
-    document.getElementById('t-in-n').textContent = t.inN;
-    document.getElementById('t-in-p').textContent = t.inP;
-    document.getElementById('t-in-k').textContent = t.inK;
-    document.getElementById('t-in-ph').textContent = t.inPh;
-    document.getElementById('t-in-temp').textContent = t.inTemp;
-    document.getElementById('t-in-hum').textContent = t.inHum;
-    document.getElementById('t-calc-btn').textContent = t.calcBtn;
-    document.getElementById('t-preset-label').textContent = t.presetLabel;
-    document.getElementById('t-pre-lowN').textContent = t.preLowN;
-    document.getElementById('t-pre-alk').textContent = t.preAlk;
-    document.getElementById('t-pre-bal').textContent = t.preBal;
-    document.getElementById('t-chart-heading').textContent = t.chartHeading;
-    document.getElementById('t-chart-sub').textContent = t.chartSub;
-    document.getElementById('t-footer').textContent = t.footer;
+    if (document.getElementById('t-brand-title')) document.getElementById('t-brand-title').textContent = t.brandTitle;
+    if (document.getElementById('t-brand-sub')) document.getElementById('t-brand-sub').textContent = t.brandSub;
+    if (document.getElementById('t-pico-status')) document.getElementById('t-pico-status').textContent = t.picoStatus;
+    if (document.getElementById('t-refresh-btn')) document.getElementById('t-refresh-btn').textContent = t.refreshBtn;
+    if (document.getElementById('t-step1-title')) document.getElementById('t-step1-title').textContent = t.step1Title;
+    if (document.getElementById('t-crop-tomato')) document.getElementById('t-crop-tomato').textContent = t.cropTomato;
+    if (document.getElementById('t-crop-wheat')) document.getElementById('t-crop-wheat').textContent = t.cropWheat;
+    if (document.getElementById('t-crop-rice')) document.getElementById('t-crop-rice').textContent = t.cropRice;
+    if (document.getElementById('t-crop-cotton')) document.getElementById('t-crop-cotton').textContent = t.cropCotton;
+    if (document.getElementById('t-crop-maize')) document.getElementById('t-crop-maize').textContent = t.cropMaize;
+    if (document.getElementById('t-crop-sugarcane')) document.getElementById('t-crop-sugarcane').textContent = t.cropSugarcane;
+    if (document.getElementById('t-lbl-n')) document.getElementById('t-lbl-n').textContent = t.lblN;
+    if (document.getElementById('t-lbl-p')) document.getElementById('t-lbl-p').textContent = t.lblP;
+    if (document.getElementById('t-lbl-k')) document.getElementById('t-lbl-k').textContent = t.lblK;
+    if (document.getElementById('t-lbl-ph')) document.getElementById('t-lbl-ph').textContent = t.lblPh;
+    if (document.getElementById('t-lbl-temp')) document.getElementById('t-lbl-temp').textContent = t.lblTemp;
+    if (document.getElementById('t-lbl-hum')) document.getElementById('t-lbl-hum').textContent = t.lblHum;
+    if (document.getElementById('t-hero-heading')) document.getElementById('t-hero-heading').textContent = t.heroHeading;
+    if (document.getElementById('t-hero-tag')) document.getElementById('t-hero-tag').textContent = t.heroTag;
+    if (document.getElementById('t-dosage-prefix')) document.getElementById('t-dosage-prefix').textContent = t.dosagePrefix;
+    if (document.getElementById('t-steps-label')) document.getElementById('t-steps-label').textContent = t.stepsLabel;
+    if (document.getElementById('t-sim-heading')) document.getElementById('t-sim-heading').textContent = t.simHeading;
+    if (document.getElementById('t-in-n')) document.getElementById('t-in-n').textContent = t.inN;
+    if (document.getElementById('t-in-p')) document.getElementById('t-in-p').textContent = t.inP;
+    if (document.getElementById('t-in-k')) document.getElementById('t-in-k').textContent = t.inK;
+    if (document.getElementById('t-in-ph')) document.getElementById('t-in-ph').textContent = t.inPh;
+    if (document.getElementById('t-in-temp')) document.getElementById('t-in-temp').textContent = t.inTemp;
+    if (document.getElementById('t-in-hum')) document.getElementById('t-in-hum').textContent = t.inHum;
+    if (document.getElementById('t-calc-btn')) document.getElementById('t-calc-btn').textContent = t.calcBtn;
+    if (document.getElementById('t-preset-label')) document.getElementById('t-preset-label').textContent = t.presetLabel;
+    if (document.getElementById('t-pre-lowN')) document.getElementById('t-pre-lowN').textContent = t.preLowN;
+    if (document.getElementById('t-pre-alk')) document.getElementById('t-pre-alk').textContent = t.preAlk;
+    if (document.getElementById('t-pre-bal')) document.getElementById('t-pre-bal').textContent = t.preBal;
+    if (document.getElementById('t-chart-heading')) document.getElementById('t-chart-heading').textContent = t.chartHeading;
+    if (document.getElementById('t-chart-sub')) document.getElementById('t-chart-sub').textContent = t.chartSub;
+    if (document.getElementById('t-footer')) document.getElementById('t-footer').textContent = t.footer;
 
     const theme = document.documentElement.getAttribute('data-theme') || 'light';
     updateThemeButtonUI(theme);
@@ -147,6 +149,7 @@ function setLanguage(lang) {
 function updateCropBadge() {
     const t = translations[currentLang];
     const badge = document.getElementById('activeCropBadge');
+    if (!badge) return;
     let cropLabel = currentCrop;
     if (currentLang === 'hi') {
         if (currentCrop === 'Tomato') cropLabel = 'टमाटर (Tomato)';
@@ -181,6 +184,7 @@ function toggleTheme() {
 function updateThemeButtonUI(theme) {
     const icon = document.getElementById('themeIcon');
     const label = document.getElementById('themeLabel');
+    if (!icon || !label) return;
     const t = translations[currentLang];
     if (theme === 'dark') {
         icon.textContent = '☀️';
@@ -459,7 +463,7 @@ function loadPreset(type) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('app-lang') || 'en';
+    const savedLang = localStorage.getItem('app-lang') || 'hi';
     initTheme();
     initChart();
     setLanguage(savedLang);
